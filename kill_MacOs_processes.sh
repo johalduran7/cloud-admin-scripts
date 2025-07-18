@@ -8,6 +8,15 @@
 output=$(log show --last 1m | grep 'activateForUserName: johnduran sessionUnlocked');
 
 if [ -n "$output" ] ; then 
-    pgrep -f -i sleep | sudo xargs kill -9 #kills some loops remaining in the background about this very script
-    while true; do pgrep -f -i mds ir_agent installd intune UpdateBrainService | sudo xargs kill -9; sleep 3; done
+    echo "Login: YES -> " $output;
+    pgrep -f -i sleep kill_MacOs_processes | sudo xargs kill -9 #kills some loops remaining in the background about this very script
+    while true; do pgrep -f -i mds ir_agent installd intune UpdateBrainService amagent| sudo xargs kill -9; scutil --nc stop "VPN" ;sleep 3; done
+else
+    echo "Login: NO" ;
 fi
+
+# check the status of the vpn:
+scutil --nc status "VPN Connection"  2>&1
+
+# list the vpns (the name of the VPN of forticlient changes every now and then):
+networksetup -listallnetworkservices  2>&1
