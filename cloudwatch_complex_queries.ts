@@ -1,3 +1,18 @@
+// To run this project:
+//
+// 1.  Ensure you have Node.js and npm installed.
+// 2.  Install dependencies (if you haven't already):
+//     npm install @aws-sdk/client-cloudwatch-logs @aws-sdk/credential-providers
+//     npm install --save-dev typescript ts-node @types/node
+//
+// 3.  Configure your AWS CLI profile (~/.aws/config):
+//     [profile na6_techsupport]
+//     region = us-east-2
+//     output = json
+//     mfa_serial = arn:aws:iam::<ACCCOUNT_ID>:mfa/JohnPhone
+//
+// 4.  Run the script:
+//      tsc queuers_load.ts && node queuers_load.js
 import {
   CloudWatchLogsClient,
   StartQueryCommand,
